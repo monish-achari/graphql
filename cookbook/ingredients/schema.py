@@ -20,6 +20,7 @@ class Query(object):
 						        first=graphene.Int(),
 						        skip=graphene.Int(),
     							)
+    goodbye = String()
 
     def resolve_all_categories(self, info, **kwargs):
         return Category.objects.all()
@@ -39,5 +40,7 @@ class Query(object):
         if first:
         	ing = ing[:first]
 
-        return ing
+       	return ing
 
+    def resolve_goodbye(root, info):
+    	return 'See ya!'
