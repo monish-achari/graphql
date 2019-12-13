@@ -124,3 +124,6 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     'SCHEMA': 'cookbook.schema.schema'
 }
+
+
+GEOIP_PATH  = BASE_DIR+STATIC_URL

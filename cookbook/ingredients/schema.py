@@ -20,7 +20,7 @@ class Query(object):
 						        first=graphene.Int(),
 						        skip=graphene.Int(),
     							)
-    goodbye = String()
+    # goodbye = String()
 
     def resolve_all_categories(self, info, **kwargs):
         return Category.objects.all()
@@ -42,5 +42,5 @@ class Query(object):
 
        	return ing
 
-    def resolve_goodbye(root, info):
-    	return 'See ya!'
+    # def resolve_goodbye(root, info):
+    	# return 'See ya!'
