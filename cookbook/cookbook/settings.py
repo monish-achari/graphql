@@ -25,7 +25,7 @@ SECRET_KEY = 'psflztq#z!te)o9&q8bixptguo9xyvd6@@2=0))c^ffa#nht$+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ingredients',
     'graphene_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -126,4 +127,4 @@ GRAPHENE = {
 }
 
 
-GEOIP_PATH  = BASE_DIR+STATIC_URL
+GEOIP_PATH  = BASE_DIR+"/static"

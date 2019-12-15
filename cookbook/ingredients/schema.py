@@ -2,6 +2,7 @@ import graphene
 from graphene_django.types import DjangoObjectType
 from ingredients.models import Category, Ingredient
 from django.db.models import Q
+from django.contrib.gis.geoip2 import GeoIP2
 
 class CategoryType(DjangoObjectType):
     class Meta:
@@ -20,7 +21,10 @@ class Query(object):
 						        first=graphene.Int(),
 						        skip=graphene.Int(),
     							)
-    # goodbye = String()
+    goodbye = graphene.String()
+
+    your_location = graphene.String(required=True,ip=graphene.String())
+    # your_location = graphene.JSONString(required=True,ip=graphene.String())
 
     def resolve_all_categories(self, info, **kwargs):
         return Category.objects.all()
@@ -42,5 +46,14 @@ class Query(object):
 
        	return ing
 
-    # def resolve_goodbye(root, info):
-    	# return 'See ya!'
+    def resolve_goodbye(self, info):
+    	return 'See ya!'
+
+    def resolve_your_location(self,info,**kwargs):
+        geo_location_obj = GeoIP2()
+        # my_ip = info.context.META.get('REMOTE_ADDR')
+        my_ip='43.254.162.207'
+        x_forwarded_for = info.context.META.get('HTTP_X_FORWARDED_FOR',my_ip)
+        hostname = kwargs.get('ip',my_ip) 
+        city_json_val = geo_location_obj.city(hostname)
+        return city_json_val
