@@ -52,7 +52,7 @@ class Query(object):
     def resolve_your_location(self,info,**kwargs):
         geo_location_obj = GeoIP2()
         # my_ip = info.context.META.get('REMOTE_ADDR')
-        my_ip='43.254.162.207'
+        my_ip='127.0.0.1' # remove this ip
         x_forwarded_for = info.context.META.get('HTTP_X_FORWARDED_FOR',my_ip)
         hostname = kwargs.get('ip',my_ip) 
         city_json_val = geo_location_obj.city(hostname)
